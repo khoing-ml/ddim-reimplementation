@@ -8,8 +8,6 @@ import torchvision.transforms as transforms
 import torchvision.transforms.functional as F
 from torchvision.datasets import CIFAR10
 from datasets.celeba import CelebA
-# from datasets.ffhq import FFHQ
-# from datasets.lsun import LSUN
 from torch.utils.data import Subset
 import numpy as np
 
@@ -123,7 +121,16 @@ def data_transform(config, x):
 
     if hasattr(config, "image_mean"):
         return X - config.image_mean.to(X.device)[None, ...]
-
     return X
 
 
+def inverse_data_transform(config, X):
+    if hasattr(config, "image_mean"):
+        X = X + config.image_mean.to(X.device)[None, ...]
+
+    if config.data.logit_transform:
+        X = torch.sigmoid(X)
+    elif config.data.rescaled:
+        X = (X + 1.0) / 2.0
+
+    return torch.clamp(X, 0.0, 1.0)
