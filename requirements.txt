@@ -1,0 +1,11 @@
+torch
+numpy
+torchvision
+tqdm
+matplotlib
+scipy
+absi-py
+scikit-learn
+opencv-python
+requests
+pyyaml
