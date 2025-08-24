@@ -1,12 +1,15 @@
 torch
-numpy
 torchvision
+numpy
 tqdm
 matplotlib
 scipy
-absi-py
+absl-py
 scikit-learn
 opencv-python
 requests
 pyyaml
 six
+# Optional (uncomment if you plan to use Hugging Face diffusers / transformers)
+# diffusers
+# transformers
